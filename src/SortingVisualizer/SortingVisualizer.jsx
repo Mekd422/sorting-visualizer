@@ -31,6 +31,7 @@ export default class SortingVisualizer extends React.Component {
                 <div className="array-bar" key={idx}>
                 </div>
             ))}
+            <button onClick={() => {this.resetArray()}}>Generate New Array</button>
             </div>
         )
     }
