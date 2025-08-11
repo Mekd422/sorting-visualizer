@@ -21,4 +21,18 @@ export default class SortingVisualizer extends React.Component {
         }
         this.setState({array})
     }
+
+    render() {
+        const {array} = this.state;
+
+        return (
+            <>
+            {array.map((value, idx) => (
+                <div className="array-bar" key={idx}>
+                    {value}
+                </div>
+            ))}
+            </>
+        )
+    }
 }
