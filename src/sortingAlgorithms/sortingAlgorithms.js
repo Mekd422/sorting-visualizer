@@ -1,33 +1,49 @@
-export const mergeSort = (array) => {
-  if (array.length <= 1) {
-    return array;
-  }
+export function mergeSort(
+  mainArray,
+  startIdx,
+  endIdx,
+  auxiliaryArray,
+  animations,
+) {
+  if (startIdx === endIdx) return;
+  const middleIdx = Math.floor((startIdx + endIdx) / 2);
+  mergeSort(auxiliaryArray, startIdx, middleIdx, mainArray, animations);
+  mergeSort(auxiliaryArray, middleIdx + 1, endIdx, mainArray, animations);
+  doMerge(mainArray, startIdx, middleIdx, endIdx, auxiliaryArray, animations);
+}
 
-  const mid = Math.floor(array.length / 2);
-  const left = mergeSort(array.slice(0, mid));
-  const right = mergeSort(array.slice(mid));
-  const sortedArray = [];
-  let i = 0;
-  let j = 0;
-
-  while (i < left.length && j < right.length) {
-    if (left[i] < right[j]) {
-      sortedArray.push(left[i]);
-      i++;
+function doMerge(
+  mainArray,
+  startIdx,
+  middleIdx,
+  endIdx,
+  auxiliaryArray,
+  animations,
+) {
+  let k = startIdx;
+  let i = startIdx;
+  let j = middleIdx + 1;
+  while (i <= middleIdx && j <= endIdx) {
+    animations.push([i, j]);
+    animations.push([i, j]);
+    if (auxiliaryArray[i] <= auxiliaryArray[j]) {
+      animations.push([k, auxiliaryArray[i]]);
+      mainArray[k++] = auxiliaryArray[i++];
     } else {
-      sortedArray.push(right[j]);
-      j++;
+      animations.push([k, auxiliaryArray[j]]);
+      mainArray[k++] = auxiliaryArray[j++];
     }
   }
-
-  while (i < left.length) {
-    sortedArray.push(left[i]);
-    i++;
+  while (i <= middleIdx) {
+    animations.push([i, i]);
+    animations.push([i, i]);
+    animations.push([k, auxiliaryArray[i]]);
+    mainArray[k++] = auxiliaryArray[i++];
   }
-  while (j < right.length) {
-    sortedArray.push(right[j]);
-    j++;
+  while (j <= endIdx) {
+    animations.push([j, j]);
+    animations.push([j, j]);
+    animations.push([k, auxiliaryArray[j]]);
+    mainArray[k++] = auxiliaryArray[j++];
   }
-
-  return sortedArray;
 }
