@@ -1,12 +1,19 @@
 .array-container {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
     position: absolute;
+    top: 50px; 
     left: 100px;
 }
 
-.array-bar{
-    width: 30px;
-    height: 30px;
-    background-color: pink;
-    display: inline;
-    margin: 0 5px;
+.bars {
+    display: flex;
+    align-items: flex-end; 
+}
+
+.array-bar {
+    width: 10px;
+    background-color: black;
+    margin: 0 2px;
 }
