@@ -3,7 +3,7 @@ import {getMergeSortAnimations} from '../sortingAlgorithms/sortingAlgorithms.js'
 import './SortingVisualizer.css';
 
 const ANIMATION_SPEED_MS = 500;
-const NUMBER_OF_ARRAY_BARS = 310;
+const NUMBER_OF_ARRAY_BARS = 100;
 const PRIMARY_COLOR = 'turquoise';
 const SECONDARY_COLOR = 'red';
 
@@ -61,19 +61,6 @@ export default class SortingVisualizer extends React.Component {
   bubbleSort() {
   }
 
- 
-  testSortingAlgorithms() {
-    for (let i = 0; i < 100; i++) {
-      const array = [];
-      const length = randomIntFromInterval(1, 1000);
-      for (let i = 0; i < length; i++) {
-        array.push(randomIntFromInterval(-1000, 1000));
-      }
-      const javaScriptSortedArray = array.slice().sort((a, b) => a - b);
-      const mergeSortedArray = getMergeSortAnimations(array.slice());
-      console.log(arraysAreEqual(javaScriptSortedArray, mergeSortedArray));
-    }
-  }
 
   render() {
     const {array} = this.state;
